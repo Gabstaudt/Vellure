@@ -279,7 +279,7 @@ const sendEmail = (e: React.FormEvent) => {
         </section>
 
         {/* Testimonials Section */}
-        <section id="depoimentos" className="py-12 sm:py-16 lg:py-20 scroll-mt-14 sm:scroll-mt-16">
+        {/* <section id="depoimentos" className="py-12 sm:py-16 lg:py-20 scroll-mt-14 sm:scroll-mt-16">
           <div className="container px-4 sm:px-6">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3 sm:mb-4">
@@ -307,15 +307,15 @@ const sendEmail = (e: React.FormEvent) => {
               />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
-        <section id="cta" className="py-12 sm:py-16 lg:py-20 bg-[#0a2342] text-white scroll-mt-14 sm:scroll-mt-16">
+        <section id="cta" className="py-12 sm:py-16 lg:py-20  text-black scroll-mt-14 sm:scroll-mt-16">
           <div className="container px-4 sm:px-6 text-center">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
               Vista o que te faz sentir bem.
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed px-4">
+            <p className="text-black/80 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed px-4">
               Descubra o prazer de vestir peças que foram feitas pensando no seu conforto e bem-estar.
             </p>
             <Button
@@ -511,9 +511,7 @@ const sendEmail = (e: React.FormEvent) => {
             <div className="space-y-4 sm:col-span-2 lg:col-span-1">
               <Link href="/LogoComum.png" className="flex items-center">
                 {/* Placeholder for logo - to be replaced later */}
-                <div className="relative h-6 w-6 sm:h-8 sm:w-8 mr-2 border border-dashed border-gray-300 flex items-center justify-center">
-                  <span className="text-xs text-gray-400">Logo</span>
-                </div>
+               
                 <span className="font-serif text-base sm:text-lg">Vellure Intimate</span>
               </Link>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
