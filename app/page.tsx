@@ -10,8 +10,35 @@ import { TestimonialCard } from "@/components/testimonial-card"
 import { SocialLinks } from "@/components/social-links"
 import { MainNav } from "@/components/main-nav"
 import { MobileMenu } from "@/components/mobile-menu"
+import { useRef } from "react"
+import emailjs from "@emailjs/browser"
+
 
 export default function Home() {
+  const form = useRef<HTMLFormElement>(null)
+
+const sendEmail = (e: React.FormEvent) => {
+  e.preventDefault()
+
+  if (!form.current) return
+
+  emailjs
+    .sendForm(
+      'service_velure',           // ← substitua pelo seu Service ID
+      'template_jgorfrr',         // ← substitua pelo seu Template ID
+      form.current,
+      'v924ChdHLFGIR-aM5'       // ← sua Public Key
+    )
+    .then(() => {
+      alert('Mensagem enviada com sucesso!')
+      form.current?.reset()
+    })
+    .catch((error) => {
+      console.error(error)
+      alert('Erro ao enviar mensagem.')
+    })
+}
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
@@ -408,60 +435,69 @@ export default function Home() {
               </div>
               <div className="bg-[#f2e9e4]/30 p-4 sm:p-6 rounded-lg border">
                 <h3 className="font-serif text-lg sm:text-xl font-medium mb-4 sm:mb-6">Envie uma mensagem</h3>
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-xs sm:text-sm font-medium">
-                        Nome
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        className="w-full px-3 py-2 border rounded-md text-sm"
-                        placeholder="Seu nome"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-xs sm:text-sm font-medium">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        className="w-full px-3 py-2 border rounded-md text-sm"
-                        placeholder="seu@email.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-xs sm:text-sm font-medium">
-                      Assunto
-                    </label>
-                    <input
-                      id="subject"
-                      type="text"
-                      className="w-full px-3 py-2 border rounded-md text-sm"
-                      placeholder="Assunto da mensagem"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-xs sm:text-sm font-medium">
-                      Mensagem
-                    </label>
-                    <textarea
-                      id="message"
-                      className="w-full px-3 py-2 border rounded-md min-h-[100px] sm:min-h-[120px] text-sm resize-none"
-                      placeholder="Sua mensagem"
-                      required
-                    ></textarea>
-                  </div>
-                  <Button type="submit" className="w-full bg-[#0a2342] hover:bg-[#0a2342]/90 text-sm sm:text-base">
-                    Enviar mensagem
-                  </Button>
-                </form>
+                <form ref={form} onSubmit={sendEmail} className="space-y-4">
+  <div className="space-y-4">
+    <div className="space-y-2">
+      <label htmlFor="name" className="text-xs sm:text-sm font-medium">
+        Nome
+      </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        className="w-full px-3 py-2 border rounded-md text-sm"
+        placeholder="Seu nome"
+        required
+      />
+    </div>
+    <div className="space-y-2">
+      <label htmlFor="email" className="text-xs sm:text-sm font-medium">
+        Email
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        className="w-full px-3 py-2 border rounded-md text-sm"
+        placeholder="seu@email.com"
+        required
+      />
+    </div>
+    <div className="space-y-2">
+      <label htmlFor="subject" className="text-xs sm:text-sm font-medium">
+        Assunto
+      </label>
+      <input
+        id="subject"
+        name="title"
+        type="text"
+        className="w-full px-3 py-2 border rounded-md text-sm"
+        placeholder="Assunto da mensagem"
+        required
+      />
+    </div>
+    <div className="space-y-2">
+      <label htmlFor="message" className="text-xs sm:text-sm font-medium">
+        Mensagem
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        className="w-full px-3 py-2 border rounded-md min-h-[100px] sm:min-h-[120px] text-sm resize-none"
+        placeholder="Sua mensagem"
+        required
+      ></textarea>
+    </div>
+  </div>
+
+  <Button
+    type="submit"
+    className="w-full bg-[#0a2342] hover:bg-[#0a2342]/90 text-sm sm:text-base"
+  >
+    Enviar mensagem
+  </Button>
+</form>
+
               </div>
             </div>
           </div>
